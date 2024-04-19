@@ -37,13 +37,26 @@
           </div>
 
           <!-- response data here... -->
-          <textarea
-            class="h-96 w-full"
-            v-model="trxResult"
-            v-if="trxResult"
-            readonly
-          >
-          </textarea>
+          <div class="flex w-full flex-col gap-4" v-if="trxResult">
+            <div class="flex flex-col gap-1">
+              <h1 class="font-semibold">Response Data</h1>
+              <textarea
+                class="h-96 w-full rounded bg-gray-100 font-mono"
+                v-model="trxResult"
+                readonly
+              >
+              </textarea>
+            </div>
+
+            <div>
+              <button
+                class="rounded bg-amber-300 px-4 py-1 hover:bg-amber-400"
+                @click="reloadPage"
+              >
+                Reload Page
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- right: some checkout data here -->
@@ -97,6 +110,10 @@
   useHead({
     title: appName,
   })
+
+  const reloadPage = () => {
+    location.reload()
+  }
 
   //
   onMounted(() => {
