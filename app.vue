@@ -41,7 +41,7 @@
             <div class="flex flex-col gap-1">
               <h1 class="font-semibold">Response Data</h1>
               <textarea
-                class="h-96 w-full rounded bg-gray-100 font-mono"
+                class="h-96 w-full rounded bg-gray-100 p-4 font-mono"
                 v-model="trxResult"
                 readonly
               >
