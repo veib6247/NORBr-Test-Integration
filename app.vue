@@ -2,7 +2,7 @@
   <div class="flex h-dvh flex-col divide-y-[1px] bg-slate-100">
     <AppNavBar />
 
-    <div class="responsive-height flex w-full flex-col gap-3">
+    <div class="responsive-height flex w-full flex-col gap-4">
       <!-- TITLE -->
       <div class="container mx-auto mt-3">
         <h1 class="text-xl font-semibold">Demo Checkout Page</h1>
@@ -21,10 +21,29 @@
       </div>
 
       <!-- CONTENT -->
-      <div class="container mx-auto flex gap-2">
+      <div class="container mx-auto flex gap-4">
         <!-- left: payment goes here -->
         <div class="w-2/3 rounded border border-gray-200 bg-white p-6">
+          <p class="text-sm italic">
+            *The payment form below is intentionally unstyled to show the
+            default look.
+          </p>
           <div id="norbr-payment-container"></div>
+
+          <div class="mt-4 flex flex-col gap-1" v-if="isAwaitingServer">
+            <div class="h-4 animate-pulse rounded-lg bg-gray-300"></div>
+            <div class="h-4 animate-pulse rounded-lg bg-gray-300"></div>
+            <div class="h-4 animate-pulse rounded-lg bg-gray-300"></div>
+          </div>
+
+          <!-- response data here... -->
+          <textarea
+            class="h-96 w-full"
+            v-model="trxResult"
+            v-if="trxResult"
+            readonly
+          >
+          </textarea>
         </div>
 
         <!-- right: some checkout data here -->
@@ -70,7 +89,10 @@
 </template>
 
 <script lang="ts" setup>
+  import axios from 'axios'
   const appName = useState('appName', () => 'NORBr | Test Integration')
+  const isAwaitingServer = ref(false)
+  const trxResult = ref('')
 
   useHead({
     title: appName,
@@ -87,9 +109,28 @@
       displayButtons: true,
       displayCardHolder: true,
       displaySave: false,
-      onSubmit: () => {
-        // TODO: send norbr.token to server to process order
+      onSubmit: async () => {
+        console.info('Generating payment token...')
         console.info(norbr)
+
+        isAwaitingServer.value = true
+        // send token to server for checkout and order processing
+        try {
+          const res = await axios.post('/api/submitPayment', {
+            token: norbr.token,
+            paymentMethodName: norbr.paymentMethodName,
+          })
+
+          trxResult.value = JSON.stringify(res.data, undefined, 4)
+
+          //
+        } catch (error) {
+          console.error(error)
+
+          //
+        } finally {
+          isAwaitingServer.value = false
+        }
       },
     }
 
