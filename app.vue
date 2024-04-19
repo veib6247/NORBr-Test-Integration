@@ -103,6 +103,7 @@
 
 <script lang="ts" setup>
   import axios from 'axios'
+
   const appName = useState('appName', () => 'NORBr | Test Integration')
   const isAwaitingServer = ref(false)
   const trxResult = ref('')
@@ -127,12 +128,10 @@
       displayCardHolder: true,
       displaySave: false,
       onSubmit: async () => {
-        console.info('Generating payment token...')
-        console.info(norbr)
-
-        isAwaitingServer.value = true
         // send token to server for checkout and order processing
         try {
+          isAwaitingServer.value = true
+
           const res = await axios.post('/api/submitPayment', {
             token: norbr.token,
             paymentMethodName: norbr.paymentMethodName,

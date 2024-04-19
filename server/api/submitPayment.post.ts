@@ -6,6 +6,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const orderId = nanoid()
   const trxAmount = 8.97
+  const operationType = 'direct_capture'
   const processingCurrency = 'EUR'
   const paymentChannel = 'e-commerce'
 
@@ -13,7 +14,7 @@ export default defineEventHandler(async (event) => {
     type: 'api',
     amount: trxAmount,
     currency: processingCurrency,
-    operation_type: 'direct_capture',
+    operation_type: operationType,
     order_merchant_id: orderId,
     payment_channel: paymentChannel,
   })
@@ -21,7 +22,7 @@ export default defineEventHandler(async (event) => {
   // if checkout id is generated, submit order with token id
   if (checkoutData.result.code == '011111') {
     const orderData = await createOrder({
-      operation_type: 'direct_capture',
+      operation_type: operationType,
       token: body.token,
       checkout_id: checkoutData.checkout.checkout_id,
       amount: trxAmount,
