@@ -28,6 +28,7 @@ export default async function (payload: OrderPayload) {
     //
   } catch (error: any) {
     if (error.response) {
+      console.error(error.response.data)
       return error.response.data
     }
   }
