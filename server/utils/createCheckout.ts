@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 
 type CheckoutPayload = {
   type: string
@@ -7,6 +7,17 @@ type CheckoutPayload = {
   operation_type: string
   order_merchant_id: string
   payment_channel: string
+  customer_email: string
+  customer_first_name: string
+  customer_last_name: string
+  customer_street_name: string
+  customer_city: string
+  customer_zip_code: string
+  customer_country: string
+  shipping_address_street_name_line1: string
+  shipping_address_city: string
+  shipping_address_zip_code: string
+  shipping_address_country: string
 }
 
 export default async function (payload: CheckoutPayload) {
@@ -15,18 +26,20 @@ export default async function (payload: CheckoutPayload) {
   const checkoutEndpoint = 'https://api-sandbox.norbr.io/payment/checkout'
 
   try {
-    const res = await axios({
+    const { data } = await axios({
       method: 'post',
       headers: { 'x-api-key': process.env.NORBR_PRIVATE_KEY, version: '1.0.0' },
       url: checkoutEndpoint,
       data: payload,
     })
 
-    return res.data
+    console.info(data)
+    return data
 
     //
-  } catch (error) {
-    console.error(error)
-    return error
+  } catch (error: any) {
+    if (error.response) {
+      return error.response.data
+    }
   }
 }

@@ -17,10 +17,22 @@ export default defineEventHandler(async (event) => {
     operation_type: operationType,
     order_merchant_id: orderId,
     payment_channel: paymentChannel,
+    customer_email: body.customerEmail,
+    customer_first_name: body.customerFirstName,
+    customer_last_name: body.customerLastName,
+    customer_street_name: body.customerStreetName,
+    customer_city: body.customerAddressCity,
+    customer_zip_code: body.customerAddressZipCode,
+    customer_country: body.customerAddressCountry,
+    shipping_address_street_name_line1: body.shippingAddressStreetNameLine1,
+    shipping_address_city: body.shippingAddressCity,
+    shipping_address_zip_code: body.shippingAddressZipCode,
+    shipping_address_country: body.shippingAddressCountry,
   })
 
-  // if checkout id is generated, submit order with token id
   if (checkoutData.result.code == '011111') {
+    // if checkout id is generated,
+    // submit order with token id
     const orderData = await createOrder({
       operation_type: operationType,
       token: body.token,
@@ -32,7 +44,6 @@ export default defineEventHandler(async (event) => {
     })
 
     console.info(orderData)
-
     return orderData
 
     //

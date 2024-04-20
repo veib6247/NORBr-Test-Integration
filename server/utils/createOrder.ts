@@ -16,18 +16,19 @@ export default async function (payload: OrderPayload) {
   const orderEndpoint = 'https://api-sandbox.norbr.io/payment/order'
 
   try {
-    const res = await axios({
+    const { data } = await axios({
       method: 'post',
       headers: { 'x-api-key': process.env.NORBR_PRIVATE_KEY, version: '1.0.0' },
       url: orderEndpoint,
       data: payload,
     })
 
-    return res.data
+    return data
 
     //
-  } catch (error) {
-    console.error(error)
-    return error
+  } catch (error: any) {
+    if (error.response) {
+      return error.response.data
+    }
   }
 }
