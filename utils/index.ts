@@ -21,7 +21,7 @@ export const myPaymentMethods = {
         },
       ],
       countries: ['all'],
-      logo: 'assets/visa.svg',
+      logo: 'visa',
     },
     {
       name: 'mastercard',

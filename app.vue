@@ -183,6 +183,7 @@
       },
     }
 
+    // @ts-ignore
     const norbr = new Norbr(configuration)
   })
 </script>

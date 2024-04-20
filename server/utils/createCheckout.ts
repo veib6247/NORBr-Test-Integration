@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios'
+import axios from 'axios'
 
 type CheckoutPayload = {
   type: string

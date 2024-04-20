@@ -1,6 +1,6 @@
 <template>
   <nav class="flex h-14 w-full bg-white">
-    <h1 class="m-auto text-xl font-semibold">{{ appName }}</h1>
+    <h1 class="m-auto text-xl font-bold">{{ appName }}</h1>
   </nav>
 </template>
 
