@@ -23,17 +23,25 @@
       </div>
 
       <!-- CONTENT -->
-      <div class="container mx-auto flex gap-4">
+      <div class="container mx-auto flex gap-2">
         <!-- left: payment goes here -->
         <div class="w-2/3 rounded border border-gray-200 bg-white p-6">
           <AppNotification>
-            The payment form below is intentionally unstyled to show the default
-            look.
+            <p>
+              The payment form below is intentionally mosly unstyled to show the
+              default look.
+            </p>
+
+            <p>Some parts of the form may have been reset by Tailwind.</p>
           </AppNotification>
 
           <div id="norbr-payment-container"></div>
 
           <div class="mt-4 flex flex-col gap-1" v-if="isAwaitingServer">
+            <AppNotification>
+              This is a custom loading component, not an included behaviour by
+              the payment form.
+            </AppNotification>
             <div class="h-4 animate-pulse rounded-lg bg-gray-300"></div>
             <div class="h-4 animate-pulse rounded-lg bg-gray-300"></div>
             <div class="h-4 animate-pulse rounded-lg bg-gray-300"></div>
@@ -44,7 +52,7 @@
             <div class="flex flex-col gap-1">
               <h1 class="font-semibold">Response Data</h1>
               <textarea
-                class="h-96 w-full rounded bg-gray-100 p-4 font-mono"
+                class="h-96 w-full rounded border-none bg-gray-100 p-4 font-mono transition focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                 v-model="trxResult"
                 readonly
               >
@@ -53,10 +61,10 @@
 
             <div>
               <button
-                class="rounded bg-amber-300 px-4 py-1 hover:bg-amber-400"
+                class="rounded bg-amber-300 px-4 py-1 text-amber-900 hover:bg-amber-400"
                 @click="reloadPage"
               >
-                Reload Page
+                Reload Payment Form
               </button>
             </div>
           </div>
