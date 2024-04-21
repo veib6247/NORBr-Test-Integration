@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#norbr-payment-form {
+  @apply bg-pink-100;
+}

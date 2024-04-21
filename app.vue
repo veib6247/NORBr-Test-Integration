@@ -26,12 +26,11 @@
         >
           <AppNotification>
             <p>
-              The payment form below is intentionally mosly unstyled to show the
-              default look.
-            </p>
-
-            <p>
-              Some of the form inputs may have been reset by
+              The payment form below (highlighted in pink) is intentionally left
+              (mostly) unstyled to show the default look it comes with, but it
+              is recommended for the merchant to style the forms to match their
+              shop's theme. Some of the form inputs in this demo may have been
+              reset by
               <AppExternalLink
                 link="https://tailwindcss.com/docs/plugins#forms"
                 text="Tailwind Forms"
@@ -39,7 +38,12 @@
             </p>
           </AppNotification>
 
-          <div id="norbr-payment-container" v-if="displayGwDiv"></div>
+          <!-- NORBr conatiner class -->
+          <div
+            id="norbr-payment-container"
+            class="bg-pink-100"
+            v-if="displayGwDiv"
+          ></div>
 
           <!-- display skeleton loader and response data here -->
           <Transition mode="out-in">
