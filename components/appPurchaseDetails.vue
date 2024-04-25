@@ -28,13 +28,19 @@
   </div>
 
   <div class="flex">
-    <h1 class="w-2/3 text-xl font-semibold">Total</h1>
-    <div class="flex">
-      <input class="w-1/3 border-none focus:ring-0" type="number" value="€" />
+    <div class="w-2/3">
+      <h1 class="text-xl font-semibold">
+        Total
+        <span class="text-sm font-normal text-black/50">Editable</span>
+      </h1>
+    </div>
+
+    <div class="flex w-1/3">
+      <label for="trx_total_amount">€</label>
       <input
-        class="w-2/3 rounded border-none px-2 py-1 transition focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-        type="text"
-        id="shipping_address_country"
+        class="w-3/4 rounded border-none px-2 py-1 transition focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+        type="number"
+        id="trx_total_amount"
         v-model="trxTotalAmount"
       />
     </div>
