@@ -29,10 +29,20 @@
 
   <div class="flex">
     <h1 class="w-2/3 text-xl font-semibold">Total</h1>
-    <p class="w-1/3 text-lg font-semibold">€ 8.97</p>
+    <div class="flex">
+      <input class="w-1/3 border-none focus:ring-0" type="number" value="€" />
+      <input
+        class="w-2/3 rounded border-none px-2 py-1 transition focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+        type="text"
+        id="shipping_address_country"
+        v-model="trxTotalAmount"
+      />
+    </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  const trxTotalAmount = useState('trxTotalAmount')
+</script>
 
 <style></style>

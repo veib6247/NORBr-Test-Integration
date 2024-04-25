@@ -5,7 +5,7 @@ import createOrder from '../utils/createOrder'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const orderId = nanoid()
-  const trxAmount = 8.97
+  const trxAmount = body.trxTotalAmount
   const operationType = 'direct_capture'
   const processingCurrency = 'EUR'
   const paymentChannel = 'e-commerce'

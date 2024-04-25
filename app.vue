@@ -148,6 +148,11 @@
     location.reload()
   }
 
+  /**
+   * purchase info
+   */
+  const trxTotalAmount = useState('trxTotalAmount', () => 10.0)
+
   //
   onMounted(() => {
     const configuration = {
@@ -181,6 +186,8 @@
             shippingAddressCity: shippingAddressCity.value,
             shippingAddressZipCode: shippingAddressZipCode.value,
             shippingAddressCountry: shippingAddressCountry.value,
+
+            trxTotalAmount: trxTotalAmount.value,
           })
 
           trxResult.value = JSON.stringify(res.data, undefined, 4)
