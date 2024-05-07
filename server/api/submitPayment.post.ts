@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const orderId = nanoid()
   const trxAmount = body.trxTotalAmount
-  const operationType = 'direct_capture'
+  const operationType = body.operationType
   const processingCurrency = 'EUR'
   const paymentChannel = 'e-commerce'
 

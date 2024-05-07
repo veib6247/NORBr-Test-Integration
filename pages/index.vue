@@ -87,6 +87,7 @@
         <AppCustomerDetails />
         <AppShippingDetails />
         <AppPurchaseDetails />
+        <AppTransactionDetails />
       </div>
     </div>
   </div>
@@ -180,6 +181,7 @@
             shippingAddressCountry: shippingAddressCountry.value,
 
             trxTotalAmount: trxTotalAmount.value,
+            operationType: useState('operationType').value,
           })
 
           trxResult.value = JSON.stringify(res.data, undefined, 4)

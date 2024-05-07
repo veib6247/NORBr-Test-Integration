@@ -38,7 +38,7 @@
     <div class="flex w-1/3">
       <label for="trx_total_amount">€</label>
       <input
-        class="w-3/4 rounded border-none px-2 py-1 transition focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+        class="w-3/4 rounded border-none px-2 py-1 italic transition focus:ring focus:ring-blue-300 focus:ring-opacity-50"
         type="number"
         id="trx_total_amount"
         v-model="trxTotalAmount"
