@@ -20,7 +20,7 @@ type CheckoutPayload = {
   shipping_address_country: string
 }
 
-export default async function (payload: CheckoutPayload) {
+export default async function (payload: CheckoutPayload, privateKey: string) {
   console.info('Creating checkout...')
 
   const checkoutEndpoint = 'https://api-sandbox.norbr.io/payment/checkout'
@@ -28,7 +28,7 @@ export default async function (payload: CheckoutPayload) {
   try {
     const { data } = await axios({
       method: 'post',
-      headers: { 'x-api-key': process.env.NORBR_PRIVATE_KEY, version: '1.0.0' },
+      headers: { 'x-api-key': privateKey, version: '1.0.0' },
       url: checkoutEndpoint,
       data: payload,
     })

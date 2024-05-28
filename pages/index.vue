@@ -33,6 +33,19 @@
           </p>
         </AppNotification>
 
+        <div class="flex flex-col gap-4" v-if="displayAppKeys">
+          <AppKeys />
+
+          <div>
+            <button
+              class="rounded bg-sky-200 px-4 py-1 hover:bg-sky-300"
+              @click="initNorb()"
+            >
+              Initialize Form
+            </button>
+          </div>
+        </div>
+
         <!-- NORBr conatiner class -->
         <div
           id="norbr-payment-container"
@@ -102,6 +115,7 @@
     title: `${appName.value} | Test Integration`,
   })
 
+  const displayAppKeys = ref(true)
   const displayGwDiv = ref(true)
   const isAwaitingServer = ref(false)
   const trxResult = ref('')
@@ -146,10 +160,15 @@
    */
   const trxTotalAmount = useState('trxTotalAmount', () => 10.0)
 
-  //
-  onMounted(() => {
+  /**
+   *
+   */
+  const initNorb = () => {
+    displayAppKeys.value = false
+
+    // config object for the NORBr hosted elements
     const configuration = {
-      publicapikey: import.meta.env.VITE_NORBR_PUBLIC_KEY,
+      publicapikey: useState('publicKey').value,
       locale: 'en',
       environment: 'sandbox',
       tokentype: 'oneshot',
@@ -157,13 +176,17 @@
       displayButtons: true,
       displayCardHolder: true,
       displaySave: false,
+
+      // handle submitting trx data to server
       onSubmit: async () => {
         displayGwDiv.value = false
 
         // send token to server for checkout and order processing
         try {
           isAwaitingServer.value = true
+
           const res = await axios.post('/api/submitPayment', {
+            privateKey: useState('privateKey').value,
             token: norbr.token,
             paymentMethodName: norbr.paymentMethodName,
             customerEmail: customerEmail.value,
@@ -173,13 +196,11 @@
             customerAddressCity: customerAddressCity.value,
             customerAddressZipCode: customerAddressZipCode.value,
             customerAddressCountry: customerAddressCountry.value,
-
             shippingAddressStreetNameLine1:
               shippingAddressStreetNameLine1.value,
             shippingAddressCity: shippingAddressCity.value,
             shippingAddressZipCode: shippingAddressZipCode.value,
             shippingAddressCountry: shippingAddressCountry.value,
-
             trxTotalAmount: trxTotalAmount.value,
             operationType: useState('operationType').value,
           })
@@ -207,6 +228,13 @@
 
     // @ts-ignore
     const norbr = new Norbr(configuration)
+  }
+
+  /**
+   * on app mount, immediate init Norb to display the payment form
+   */
+  onMounted(() => {
+    // initNorb()
   })
 </script>
 
