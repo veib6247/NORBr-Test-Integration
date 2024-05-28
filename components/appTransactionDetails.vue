@@ -21,7 +21,7 @@
     { label: 'Debit', value: 'direct_capture' },
   ])
 
-  // sets 'direct_capture' as the default selected value on the list
+  // sets 'authorize' as the default selected value on the list
   const selectedOperationType = useState(
     'operationType',
     () => operationTypes.value[0].value
