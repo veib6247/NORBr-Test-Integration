@@ -47,7 +47,7 @@
           Private Key
         </label>
         <input
-          id="username"
+          id="username2"
           type="text"
           class="hidden w-0"
           name="dummy_username"

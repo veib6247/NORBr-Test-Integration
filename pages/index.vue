@@ -46,6 +46,8 @@
           </div>
         </div>
 
+        <AppTransactionDetails v-if="!displayAppKeys" />
+
         <!-- NORBr conatiner class -->
         <div
           id="norbr-payment-container"
@@ -100,7 +102,6 @@
         <AppCustomerDetails />
         <AppShippingDetails />
         <AppPurchaseDetails />
-        <AppTransactionDetails />
       </div>
     </div>
   </div>
@@ -169,6 +170,7 @@
     // config object for the NORBr hosted elements
     const configuration = {
       publicapikey: useState('publicKey').value,
+      CardHolderValue: 'Jonh Cena',
       locale: 'en',
       environment: 'sandbox',
       tokentype: 'oneshot',
