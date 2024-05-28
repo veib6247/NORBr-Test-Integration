@@ -31,7 +31,8 @@ export default defineEventHandler(async (event) => {
       shipping_address_zip_code: body.shippingAddressZipCode,
       shipping_address_country: body.shippingAddressCountry,
     },
-    body.privateKey
+    body.privateKey,
+    body.appUrl
   )
 
   if (checkoutData.result.code == '011111') {
@@ -48,7 +49,8 @@ export default defineEventHandler(async (event) => {
         payment_channel: paymentChannel,
         payment_method_name: body.paymentMethodName,
       },
-      body.privateKey
+      body.privateKey,
+      body.appUrl
     )
 
     console.info(orderData)

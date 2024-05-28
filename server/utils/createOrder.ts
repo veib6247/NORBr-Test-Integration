@@ -10,17 +10,27 @@ type OrderPayload = {
   payment_method_name: string
 }
 
-export default async function (payload: OrderPayload, privateKey: string) {
+export default async function (
+  payload: OrderPayload,
+  privateKey: string,
+  appUrl: string
+) {
   console.info('Creating order...')
 
   const orderEndpoint = 'https://api-sandbox.norbr.io/payment/order'
+
+  const additionalsparams = {
+    isHighRisk: true,
+  }
+
+  const fullPayload = { ...payload, ...additionalsparams }
 
   try {
     const { data } = await axios({
       method: 'post',
       headers: { 'x-api-key': privateKey, version: '1.0.0' },
       url: orderEndpoint,
-      data: payload,
+      data: fullPayload,
     })
 
     return data

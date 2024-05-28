@@ -20,10 +20,23 @@ type CheckoutPayload = {
   shipping_address_country: string
 }
 
-export default async function (payload: CheckoutPayload, privateKey: string) {
+export default async function (
+  payload: CheckoutPayload,
+  privateKey: string,
+  appUrl: string
+) {
   console.info('Creating checkout...')
 
   const checkoutEndpoint = 'https://api-sandbox.norbr.io/payment/checkout'
+
+  const redirectURLs = {
+    accept_url: `${appUrl}redirect`,
+    decline_url: `${appUrl}redirect`,
+    pending_url: `${appUrl}redirect`,
+    exception_url: `${appUrl}redirect`,
+  }
+
+  const fullPayload = { ...payload, ...redirectURLs }
 
   try {
     const { data } = await axios({

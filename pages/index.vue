@@ -196,6 +196,7 @@
           isAwaitingServer.value = true
 
           const res = await axios.post('/api/submitPayment', {
+            appUrl: useState('appUrl').value,
             privateKey: useState('privateKey').value,
             token: norbr.token,
             paymentMethodName: norbr.paymentMethodName,
@@ -239,6 +240,10 @@
     // @ts-ignore
     const norbr = new Norbr(configuration)
   }
+
+  onMounted(() => {
+    const appUrl = useState('appUrl', () => window.location.href)
+  })
 </script>
 
 <style>
