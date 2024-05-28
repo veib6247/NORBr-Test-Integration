@@ -44,7 +44,7 @@ export const myPaymentMethods = {
         },
       ],
       countries: ['all'],
-      logo: '',
+      logo: 'mastercard',
     },
   ],
 }

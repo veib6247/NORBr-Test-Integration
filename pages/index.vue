@@ -174,7 +174,13 @@
       locale: 'en',
       environment: 'sandbox',
       tokentype: 'oneshot',
-      paymentmethods: JSON.stringify(myPaymentMethods),
+      // paymentmethods: JSON.stringify(myPaymentMethods),
+      paymentmethods: JSON.stringify({
+        payment_methods_available: [
+          { name: 'visa', component_type: 'card' },
+          { name: 'mastercard', component_type: 'card' },
+        ],
+      }),
       displayButtons: true,
       displayCardHolder: true,
       displaySave: false,
