@@ -179,6 +179,9 @@
         payment_methods_available: [
           { name: 'visa', component_type: 'card' },
           { name: 'mastercard', component_type: 'card' },
+          { name: 'amex', component_type: 'card' },
+          { name: 'diners', component_type: 'card' },
+          { name: 'jcb', component_type: 'card' },
         ],
       }),
       displayButtons: true,
