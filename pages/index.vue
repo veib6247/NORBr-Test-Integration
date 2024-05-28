@@ -174,7 +174,6 @@
       locale: 'en',
       environment: 'sandbox',
       tokentype: 'oneshot',
-      // paymentmethods: JSON.stringify(myPaymentMethods),
       paymentmethods: JSON.stringify({
         payment_methods_available: [
           { name: 'visa', component_type: 'card' },
@@ -240,13 +239,6 @@
     // @ts-ignore
     const norbr = new Norbr(configuration)
   }
-
-  /**
-   * on app mount, immediate init Norb to display the payment form
-   */
-  onMounted(() => {
-    // initNorb()
-  })
 </script>
 
 <style>
