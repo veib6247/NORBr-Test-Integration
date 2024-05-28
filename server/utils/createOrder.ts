@@ -20,7 +20,7 @@ export default async function (
   const orderEndpoint = 'https://api-sandbox.norbr.io/payment/order'
 
   const additionalsparams = {
-    isHighRisk: false,
+    order_availability: false,
   }
 
   const fullPayload = { ...payload, ...additionalsparams }
